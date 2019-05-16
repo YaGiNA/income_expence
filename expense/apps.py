@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ExpenceConfig(AppConfig):
-    name = 'expence'
+class ExpenseConfig(AppConfig):
+    name = 'expense'
