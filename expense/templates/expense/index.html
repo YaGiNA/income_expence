@@ -20,6 +20,7 @@
                 <th>用途</th>
                 <th>金額</th>
             </tr>
+            {% if expenses %}
             {% for exp in expenses %}
             <tr>
                 <td>{{ exp.pub_date | date:"y/n/j"}}</td>
@@ -27,6 +28,7 @@
                 <td>{{ exp.price }}円</td>
             </tr>
             {% endfor %}
+            {% endif %}
             <tr>
                 <td></td>
                 <td>合計</td>
