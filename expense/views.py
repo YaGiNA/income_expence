@@ -1,14 +1,24 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
 # Create your views here.
 from .models import Expense
+from .form import ExpenseForm
+from django.utils import timezone
 
 
 def index(request):
-    latest_expense_list = Expense.objects.order_by('-pub_date')[:5]
+    today = str(timezone.now()).split('-')
+    expenses = Expense.objects.all()
+    form = ExpenseForm(request.POST or None)
     context = {
-        'latest_expense_list': latest_expense_list,
+        'year' : today[0],
+        'month' : today[1],
+        'expenses' : expenses,
+        'form': form,
     }
+    if form.is_valid():
+        form.save()
+        return redirect('expense:index')
     return render(request, 'expense/index.html', context)
 
 def detail(request, expense_id):
