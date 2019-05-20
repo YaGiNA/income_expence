@@ -7,14 +7,15 @@ from django.utils import timezone
 
 
 def index(request):
-    today = str(timezone.now()).split('-')
+    today = timezone.now()
     expenses = Expense.objects.all()
+    total_price = sum(expense.price for expense in expenses)
     form = ExpenseForm(request.POST or None)
     context = {
-        'year' : today[0],
-        'month' : today[1],
+        'now': today,
         'expenses' : expenses,
         'form': form,
+        'total_price': total_price,
     }
     if form.is_valid():
         form.save()
