@@ -1,0 +1,9 @@
+{% if latest_expense_list %}
+    <ul>
+    {% for expense in latest_expense_list %}
+        <li><a href="{% url 'expense:detail' expense.id %}">{{ expense.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No expenses are available.</p>
+{% endif %}
