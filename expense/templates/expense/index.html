@@ -1,0 +1,36 @@
+{% load static %}
+{% load tz %}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HousekeepingBook</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'expense/style.css' %}">
+    </head>
+    <body>
+        <h1>{% now "Y-m-d" %}</h1>
+        <form action="/expense" method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <input type="submit" value="送信">
+        </form>
+        <table>
+            <tr>
+                <th>日付</th>
+                <th>用途</th>
+                <th>金額</th>
+            </tr>
+            {% for exp in expenses %}
+            <tr>
+                <td>{{ exp.pub_date | date:"y/n/j"}}</td>
+                <td>{{ exp.title }}</td>
+                <td>{{ exp.price }}円</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td>合計</td>
+                <td>{{ total_price }}円</td>
+            </tr>
+    </body>
+</html>
