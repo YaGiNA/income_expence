@@ -24,8 +24,9 @@ mccabe==0.6.1
 pathspec==0.5.9
 pylint==2.3.1
 python-dateutil==2.8.0
+python-dotenv==0.10.2
 pytz==2019.1
-PyYAML==3.13
+PyYAML==5.1
 requests==2.20.1
 semantic-version==2.5.0
 six==1.11.0
