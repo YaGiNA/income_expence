@@ -108,5 +108,5 @@ venv.bak/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-# local env
-local.env
+# local config
+.ebextensions/db-migrate.config
