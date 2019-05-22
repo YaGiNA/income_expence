@@ -14,8 +14,10 @@
             {{ form.as_table }}
             <input type="submit" value="送信">
         </form>
+        <form method="post" action="{% url 'expense:delete' %}">
         <table>
             <tr>
+                <th></th>
                 <th>日付</th>
                 <th>用途</th>
                 <th>金額</th>
@@ -23,16 +25,22 @@
             {% if expenses %}
             {% for exp in expenses %}
             <tr>
+                <td><input type="checkbox" name="delete_ids" value="{{ exp.id }}"></td>
                 <td>{{ exp.pub_date | date:"y/n/j"}}</td>
                 <td>{{ exp.title }}</td>
                 <td>{{ exp.price }}円</td>
             </tr>
             {% endfor %}
-            {% endif %}
             <tr>
-                <td></td>
                 <td>合計</td>
+                <td></td>
+                <td></td>
                 <td>{{ total_price }}円</td>
             </tr>
+            {% csrf_token %}
+        {% endif %}
+        </table>
+        <input type="submit" value="削除">
+        </form>
     </body>
 </html>

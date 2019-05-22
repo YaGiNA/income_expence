@@ -5,4 +5,5 @@ from . import views
 app_name = 'expense'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('/delete/', views.delete, name='delete'),
 ]

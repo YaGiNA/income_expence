@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import Expense
 from .form import ExpenseForm
 from django.utils import timezone
+from django.views.decorators.http import require_POST
 
 
 def index(request):
@@ -22,6 +23,9 @@ def index(request):
         return redirect('expense:index')
     return render(request, 'expense/index.html', context)
 
-def detail(request, expense_id):
-    expense = get_object_or_404(Expense, pk=expense_id)
-    return render(request, 'expense/detail.html', {'expense': expense})
+@require_POST
+def delete(request):
+    delete_ids = request.POST.getlist('delete_ids')
+    if delete_ids:
+        Expense.objects.filter(id__in=delete_ids).delete()
+    return redirect('expense:index')
