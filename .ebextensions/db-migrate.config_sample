@@ -2,7 +2,9 @@ container_commands:
   01_migrate:
     command: "django-admin.py migrate"
     leader_only: true
+  02_permission:
+    command: "chmod 777 db.sqlite3"
 option_settings:
   aws:elasticbeanstalk:application:environment:
     DJANGO_SETTINGS_MODULE: income_expence.settings
-    SECRET_KEY: h0$d+c(96c4xal63a=qlmu&p3lwdhw147@bi3r3hd(-ng#e66u
+    SECRET_KEY: WRITE_DOWN_OWN_SECRET_KEY_HERE
