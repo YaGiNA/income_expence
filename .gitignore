@@ -110,3 +110,4 @@ venv.bak/
 
 # local config
 .ebextensions/db-migrate.config
+Pipfile
